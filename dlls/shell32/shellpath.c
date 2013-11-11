@@ -3056,8 +3056,11 @@ HRESULT WINAPI SHGetKnownFolderPath(REFKNOWNFOLDERID rfid, DWORD flags, HANDLE t
 
     if (flags & KF_FLAG_INIT)
         index |= CSIDL_FLAG_PER_USER_INIT;
+    
+    if (flags & KF_FLAG_DEFAULT_PATH)
+        index |= CSIDL_FLAG_DEFAULT_PATH;
 
-    if (flags & ~(KF_FLAG_CREATE|KF_FLAG_DONT_VERIFY|KF_FLAG_NO_ALIAS|KF_FLAG_INIT))
+    if (flags & ~(KF_FLAG_CREATE|KF_FLAG_DONT_VERIFY|KF_FLAG_NO_ALIAS|KF_FLAG_INIT|KF_FLAG_DEFAULT_PATH))
     {
         FIXME("flags 0x%08x not supported\n", flags);
         return E_INVALIDARG;
